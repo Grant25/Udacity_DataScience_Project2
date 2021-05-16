@@ -59,7 +59,7 @@ def tokenize(text):
     # regex to remove punctuation     
     text = re.sub(r"[^a-zA-Z0-9]"," ",text)
       
-        
+    # split the messages into tokens and remove stop words    
     tokens = word_tokenize(text)
     tokens2= [w for w in tokens if w not in stopwords.words('english')]
     
@@ -67,7 +67,7 @@ def tokenize(text):
     
     clean_tokens=[]
       
-    
+    # loop through each token applying the lemmatizer, set to lower case and remove trailing space
     for tok in tokens2:
         clean_tok=lemmatizer.lemmatize(tok).lower().strip()
         clean_tokens.append(clean_tok)
@@ -81,10 +81,12 @@ def build_model():
     Inputs: None
     Output: cv - the cross-validated model """
     
+    # create the pipeline and apply the tokenisation function
     pipeline = Pipeline([('vect',CountVectorizer(tokenizer=tokenize)),
                     ('tfidf',TfidfTransformer()),
                     ('clf',MultiOutputClassifier(RandomForestClassifier()))])
     
+    # create parameters - and provide values to seach through
     parameters = {'clf__estimator__n_estimators': [10,25,50,100]}
                 
     cv = GridSearchCV(pipeline,param_grid=parameters)
@@ -103,6 +105,7 @@ def evaluate_model(model, X_test, Y_test, category_names):
            
     output: None """
     
+    # create our predicted results using the teset set 
     y_pred = model.predict(X_test)
 
     print("Overall Model Accuracy: "+ str((y_pred==Y_test).mean()), '\n')
@@ -124,6 +127,7 @@ def save_model(model, model_filepath):
     
     output: None """
     
+    # create classifer and save as a pickle file
     classifier = open(model_filepath,"wb")
     pickle.dump(model, classifier)
     classifier.close()
