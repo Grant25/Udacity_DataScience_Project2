@@ -14,9 +14,11 @@ def load_data(messages_filepath, categories_filepath):
             
     output: df - the merged file of messages and categories '''
     
+    # read the messages and categories from the specifed filepath locations
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
     
+    # merge the messages and categories on the id variable
     df = messages.merge(categories, on='id', how='left')
   
     # return the df so it can be used in subsequent functions
