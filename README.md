@@ -46,12 +46,15 @@ Categories.csv- The categories file contains two fields – a unique id which is
 Within the Udacity IDE Terminal the results can be obtain by running the following commands within the root directory of the Udacity workspace.
 
 To set up the database and run the ETL pipeline to clean the new data, the following should be ran:
+
 python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
 
 To run the Machine Learning pipeline and train and save a new classifier model the following should be ran:
+
 python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl
 
 The Flask app can then be created by running the below command from within the app directory of the terminal
+
 python run.py, with the app then being visable at: http://0.0.0.0:3001/
 
 Within the train_classifier program, a unique tokenisation function was applied to the messages that removed stop words, applied lemmatisation as well as removing punctuation. TF-IDF was calculated as well. Train_test_split as utilised to separate the data in to training sets and tests sets. 20% of the data was reserved for the test set with the rest being used to train the model. A Random Forest classifier was utilised providing a high degree of accuracy (0.8), though this is variable across each of the multi-class responses. It was found that categories such as aid_related have a precision of 0.75 whilst aid_centers and hospitals had an average precision of 0.98. Further work would need to be undertaken to understand this discrepancy. 
