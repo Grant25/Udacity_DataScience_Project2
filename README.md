@@ -68,4 +68,6 @@ One possible improvement for this model would be to over sample the classes wher
 With thanks to Udacity for providing the templates and code structure for run.py, process.py and train_classifier.py
 Thanks also to Figure Eight who provided messages.csv and categories.csv via Udacity
 
-Code to create the classification report was modified from the eacmple provided within the Sklearn documentation [here](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html)
+Code to create the classification report was modified from the example provided within the Sklearn documentation [here](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html)
+
+The method to create a pickle file of a classifier was taken from the following website, [here](https://pythonprogramming.net/pickle-classifier-save-nltk-tutorial/) 
